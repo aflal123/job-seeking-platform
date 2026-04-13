@@ -29,6 +29,9 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "is_verified")
+    private boolean isVerified = false;
+
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
