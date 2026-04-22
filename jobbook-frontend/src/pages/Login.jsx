@@ -21,6 +21,9 @@ const handleLogin = async () => {
     try {
         const response = await login(email, password)
         console.log(response)
+        localStorage.setItem('token', response.token)
+        localStorage.setItem('role', response.role)
+        localStorage.setItem('fullName', response.fullName)
         navigate('/home')
     } catch (error) {
         console.log(error.response.data)
