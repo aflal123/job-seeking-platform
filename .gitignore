@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+.claude/
+
+.DS_Store
+node_modules/
+dist/
+build/
+*.log
+.env
+.env.*.local

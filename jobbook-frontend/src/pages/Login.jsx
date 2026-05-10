@@ -4,8 +4,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import { Visibility as VisibilityIcon, VisibilityOff as VisibilityOffIcon } from '@mui/icons-material'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import { Link, useNavigate } from 'react-router-dom'
@@ -24,6 +23,7 @@ const handleLogin = async () => {
         localStorage.setItem('token', response.token)
         localStorage.setItem('role', response.role)
         localStorage.setItem('fullName', response.fullName)
+        localStorage.setItem('userId', response.id)
         navigate('/home')
     } catch (error) {
         console.log(error.response.data)

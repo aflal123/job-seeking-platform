@@ -4,9 +4,7 @@ import Paper from '@mui/material/Paper'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import ThumbUpIcon from '@mui/icons-material/ThumbUp'
-import CommentIcon from '@mui/icons-material/Comment'
-import ShareIcon from '@mui/icons-material/Share'
+import { ThumbUp as ThumbUpIcon, Comment as CommentIcon, Share as ShareIcon } from '@mui/icons-material'
 
 const PostCard = () => {
   return (
