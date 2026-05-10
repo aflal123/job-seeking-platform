@@ -7,12 +7,13 @@ import { Home as HomeIcon, Work as WorkIcon, School as SchoolIcon, Groups as Gro
 
 import React from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Sidebar = () => {
     const fullName = localStorage.getItem('fullName')
     const role = localStorage.getItem('role')
     const navigate = useNavigate()
+    const location = useLocation()
 
     const navItems = [
         { label: 'Home', icon: <HomeIcon />, path: '/home' },
@@ -34,28 +35,31 @@ const Sidebar = () => {
 
             {/* Navigation Links */}
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                {navItems.map((item) => (
-                    <Button 
-                        key={item.label}
-                        fullWidth 
-                        startIcon={item.icon} 
-                        onClick={() => navigate(item.path)}
-                        sx={{ 
-                            justifyContent: 'flex-start', 
-                            py: 1.2, 
-                            px: 2,
-                            borderRadius: 2,
-                            color: 'text.primary',
-                            fontWeight: 'medium',
-                            '&:hover': {
-                                backgroundColor: '#e3f2fd',
-                                color: '#1976d2'
-                            }
-                        }}
-                    >
-                        {item.label}
-                    </Button>
-                ))}
+                {navItems.map((item) => {
+                    const isActive = location.pathname === item.path
+                    return (
+                        <Button 
+                            key={item.label}
+                            fullWidth 
+                            startIcon={item.icon} 
+                            onClick={() => navigate(item.path)}
+                            sx={{ 
+                                justifyContent: 'flex-start', 
+                                py: 1.2, 
+                                px: 2,
+                                borderRadius: 2,
+                                color: isActive ? '#1976d2' : 'text.primary',
+                                backgroundColor: isActive ? '#e3f2fd' : 'transparent',
+                                fontWeight: isActive ? 'bold' : 'medium',
+                                '&:hover': {
+                                    backgroundColor: isActive ? '#e3f2fd' : '#f5f5f5',
+                                }
+                            }}
+                        >
+                            {item.label}
+                        </Button>
+                    )
+                })}
             </Box>
         </Box>
     )
