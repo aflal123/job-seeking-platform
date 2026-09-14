@@ -1,75 +1,222 @@
 import React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
-import { useNavigate } from 'react-router-dom'
-
-
-import { Logout as LogoutIcon } from '@mui/icons-material'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Briefcase, BookOpen, Users, Bell, User as UserIcon, LogOut, Shield, Sparkles, PlusCircle } from 'lucide-react'
 
 const Navbar = () => {
-    const navigate = useNavigate()
-    const role = localStorage.getItem('role')
+  const navigate = useNavigate()
+  const location = useLocation()
+  
+  const token = localStorage.getItem('token')
+  const role = localStorage.getItem('role') || 'JOB_SEEKER'
+  const fullName = localStorage.getItem('fullName') || 'User'
 
-    const handleLogout = () => {
-        localStorage.clear()
-        navigate('/login')
-    }
+  const handleLogout = () => {
+    localStorage.clear()
+    navigate('/login')
+  }
 
-    return (
-        <AppBar position="sticky" elevation={0} sx={{ backgroundColor: 'white', borderBottom: '1px solid #e0e0e0', color: '#333' }}>
-            <Toolbar sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
-                {/* Logo */}
-                <Typography 
-                    variant="h5" 
-                    sx={{ 
-                        fontWeight: '800', 
-                        flexGrow: 0, 
-                        mr: 4, 
-                        color: '#1976d2', 
-                        cursor: 'pointer',
-                        letterSpacing: '-0.5px'
-                    }}
-                    onClick={() => navigate('/home')}
-                >
-                    JobBook
-                </Typography>
+  const isActive = (path) => location.pathname === path
 
-                {/* Nav Links */}
-                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-                    <Button sx={{ color: 'text.primary', fontWeight: 'bold' }} onClick={() => navigate('/home')}>Home</Button>
-                    <Button sx={{ color: 'text.primary', fontWeight: 'bold' }} onClick={() => navigate('/jobs')}>Jobs</Button>
-                    {role === 'EMPLOYER' && <Button sx={{ color: 'text.primary', fontWeight: 'bold' }} onClick={() => navigate('/employer-dashboard')}>Employer Hub</Button>}
-                    <Button sx={{ color: 'text.primary', fontWeight: 'bold' }} onClick={() => navigate('/courses')}>Courses</Button>
-                    <Button sx={{ color: 'text.primary', fontWeight: 'bold' }} onClick={() => navigate('/community')}>Community</Button>
-                </Box>
+  return (
+    <nav style={{
+      position: 'sticky',
+      top: 0,
+      zIndex: 50,
+      background: 'rgba(9, 13, 22, 0.85)',
+      backdropFilter: 'blur(20px)',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      padding: '12px 24px'
+    }}>
+      <div style={{
+        maxWidth: '1280px',
+        margin: '0 auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        
+        {/* Brand Logo */}
+        <Link to="/home" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '12px',
+            background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 15px rgba(99, 102, 241, 0.4)'
+          }}>
+            <Briefcase size={22} color="#ffffff" />
+          </div>
+          <div>
+            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em' }}>
+              Job<span className="gradient-text">Pulse</span>
+            </span>
+            <span style={{ fontSize: '0.65rem', display: 'block', color: '#94a3b8', marginTop: '-4px', fontWeight: 600 }}>
+              AI CAREER & MENTORSHIP
+            </span>
+          </div>
+        </Link>
 
-                {/* Profile & Logout */}
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Button 
-                        variant="outlined" 
-                        size="small" 
-                        onClick={() => navigate('/profile')}
-                        sx={{ borderRadius: 2, fontWeight: 'bold' }}
-                    >
-                        Profile
-                    </Button>
-                    <Button 
-                        variant="contained" 
-                        color="error" 
-                        size="small" 
-                        startIcon={<LogoutIcon />}
-                        onClick={handleLogout}
-                        sx={{ borderRadius: 2, fontWeight: 'bold', boxShadow: 'none' }}
-                    >
-                        Logout
-                    </Button>
-                </Box>
-            </Toolbar>
-        </AppBar>
-    )
+        {/* Navigation Links */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Link 
+            to="/jobs" 
+            style={{
+              padding: '8px 16px',
+              borderRadius: '8px',
+              color: isActive('/jobs') ? '#ffffff' : '#94a3b8',
+              backgroundColor: isActive('/jobs') ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+              border: isActive('/jobs') ? '1px solid rgba(99, 102, 241, 0.3)' : '1px solid transparent',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              transition: 'all 0.2s'
+            }}
+          >
+            <Briefcase size={16} /> Jobs
+          </Link>
+
+          <Link 
+            to="/courses" 
+            style={{
+              padding: '8px 16px',
+              borderRadius: '8px',
+              color: isActive('/courses') ? '#ffffff' : '#94a3b8',
+              backgroundColor: isActive('/courses') ? 'rgba(6, 182, 212, 0.15)' : 'transparent',
+              border: isActive('/courses') ? '1px solid rgba(6, 182, 212, 0.3)' : '1px solid transparent',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              transition: 'all 0.2s'
+            }}
+          >
+            <BookOpen size={16} /> Mentorship & Courses
+          </Link>
+
+          <Link 
+            to="/community" 
+            style={{
+              padding: '8px 16px',
+              borderRadius: '8px',
+              color: isActive('/community') ? '#ffffff' : '#94a3b8',
+              backgroundColor: isActive('/community') ? 'rgba(168, 85, 247, 0.15)' : 'transparent',
+              border: isActive('/community') ? '1px solid rgba(168, 85, 247, 0.3)' : '1px solid transparent',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              transition: 'all 0.2s'
+            }}
+          >
+            <Users size={16} /> Community
+          </Link>
+
+          {role === 'EMPLOYER' && (
+            <Link 
+              to="/employer-dashboard" 
+              style={{
+                padding: '8px 16px',
+                borderRadius: '8px',
+                color: '#34d399',
+                backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                border: '1px solid rgba(16, 185, 129, 0.3)',
+                textDecoration: 'none',
+                fontWeight: 600,
+                fontSize: '0.9rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <PlusCircle size={16} /> Employer Portal
+            </Link>
+          )}
+
+          {role === 'ADMIN' && (
+            <Link 
+              to="/admin-dashboard" 
+              style={{
+                padding: '8px 16px',
+                borderRadius: '8px',
+                color: '#f43f5e',
+                backgroundColor: 'rgba(244, 63, 94, 0.12)',
+                border: '1px solid rgba(244, 63, 94, 0.3)',
+                textDecoration: 'none',
+                fontWeight: 600,
+                fontSize: '0.9rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <Shield size={16} /> Admin Panel
+            </Link>
+          )}
+        </div>
+
+        {/* User Status / Actions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {token ? (
+            <>
+              <Link to="/notifications" style={{ textDecoration: 'none', color: '#94a3b8', position: 'relative', display: 'flex' }}>
+                <Bell size={20} />
+                <span style={{
+                  position: 'absolute',
+                  top: '-2px',
+                  right: '-2px',
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  backgroundColor: '#06b6d4'
+                }} />
+              </Link>
+
+              <Link to="/profile" style={{
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 12px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)'
+              }}>
+                <UserIcon size={18} color="#6366f1" />
+                <span style={{ color: '#f8fafc', fontWeight: 600, fontSize: '0.85rem' }}>{fullName}</span>
+                <span className="badge-pill badge-purple" style={{ fontSize: '0.65rem' }}>{role}</span>
+              </Link>
+
+              <button 
+                onClick={handleLogout} 
+                className="btn-secondary" 
+                style={{ padding: '7px 12px', fontSize: '0.85rem' }}
+                title="Logout"
+              >
+                <LogOut size={16} />
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn-secondary">Log In</Link>
+              <Link to="/register" className="btn-primary">
+                Get Started <Sparkles size={16} />
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  )
 }
 
 export default Navbar

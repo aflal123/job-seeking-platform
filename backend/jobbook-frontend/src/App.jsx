@@ -9,8 +9,7 @@ import EmployerDashboard from './pages/EmployerDashboard'
 import Courses from './pages/Courses'
 import Profile from './pages/Profile'
 import Community from './pages/Community'
-import Notifications from './pages/Notifications'
-import AdminDashboard from './pages/AdminDashboard'
+
 import Landing from './pages/Landing'
 
 function App() {
@@ -24,11 +23,9 @@ function App() {
         <Route path="/home" element={<Home/>} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/employer-dashboard" element={<EmployerDashboard />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/community" element={<Community />} />
-        <Route path="/notifications" element={<Notifications />} />
       </Routes>
     </BrowserRouter>
   )
