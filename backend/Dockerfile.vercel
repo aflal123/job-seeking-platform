@@ -1,0 +1,28 @@
+# Multi-stage Docker build for Vercel Container deployment of Spring Boot
+# Build stage
+FROM maven:3.9-eclipse-temurin-17 AS build
+WORKDIR /app
+
+# Cache dependencies
+COPY pom.xml .
+RUN mvn -B dependency:go-offline
+
+# Package application without running unit tests during image creation
+COPY src ./src
+RUN mvn -B clean package -DskipTests
+
+# Runtime stage
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+
+# Run as non-privileged user for security
+RUN groupadd -r spring && useradd -r -g spring spring
+USER spring
+
+COPY --from=build /app/target/*.jar app.jar
+
+ENV PORT=8080
+EXPOSE 8080
+
+# Execute Spring Boot with optimized JVM heap and serverless GC flags
+ENTRYPOINT ["sh", "-c", "java -Xmx384m -Xss512k -XX:+UseSerialGC -Dserver.port=${PORT} -jar app.jar"]

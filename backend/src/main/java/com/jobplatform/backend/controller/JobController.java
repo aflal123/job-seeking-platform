@@ -39,7 +39,7 @@ public class JobController {
                     .body("Only employers can post jobs!");
         }
 
-        job.setEmployer(employer.get());
+        job.setEmployerId(employerId);
         jobRepository.save(job);
 
         return ResponseEntity.ok("Job posted successfully!");
