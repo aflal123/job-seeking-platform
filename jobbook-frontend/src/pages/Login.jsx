@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react'
-import axios from 'axios'
+import api from '../services/api'
 import Navbar from '../components/Navbar'
 import ForgotResetPasswordModal from '../components/ForgotResetPasswordModal'
 
@@ -19,7 +19,7 @@ const Login = () => {
     setError('')
 
     try {
-      const res = await axios.post('http://localhost:8080/api/auth/login', { email, password })
+      const res = await api.post('/auth/login', { email, password })
       const data = res.data
       
       localStorage.setItem('token', data.token)
@@ -52,7 +52,7 @@ const Login = () => {
         role: 'JOB_SEEKER'
       }
 
-      const res = await axios.post('http://localhost:8080/api/auth/google', googleUser)
+      const res = await api.post('/auth/google', googleUser)
       const data = res.data
 
       localStorage.setItem('token', data.token)

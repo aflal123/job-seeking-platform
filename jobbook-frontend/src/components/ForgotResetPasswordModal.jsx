@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { X, Mail, Lock, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react'
-import axios from 'axios'
+import api from '../services/api'
 
 const ForgotResetPasswordModal = ({ isOpen, onClose }) => {
   const [step, setStep] = useState(1) // 1: Send OTP, 2: Reset Password, 3: Success
@@ -19,7 +19,7 @@ const ForgotResetPasswordModal = ({ isOpen, onClose }) => {
     setError('')
     setMessage('')
     try {
-      const res = await axios.post('http://localhost:8080/api/auth/forgot-password', { email })
+      const res = await api.post('/auth/forgot-password', { email })
       setMessage(res.data.message || 'OTP sent to your email!')
       setStep(2)
     } catch (err) {
@@ -35,7 +35,7 @@ const ForgotResetPasswordModal = ({ isOpen, onClose }) => {
     setError('')
     setMessage('')
     try {
-      const res = await axios.post('http://localhost:8080/api/auth/reset-password', {
+      const res = await api.post('/auth/reset-password', {
         email,
         otp,
         newPassword

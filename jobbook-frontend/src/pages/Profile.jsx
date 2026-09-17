@@ -11,7 +11,7 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Avatar from '@mui/material/Avatar'
 import { AutoAwesome as AutoAwesomeIcon, CloudUpload as CloudUploadIcon, Person as PersonIcon, Work as WorkIcon, Article as ArticleIcon } from '@mui/icons-material'
-import axios from 'axios'
+import api from '../services/api'
 import { getSeekerApplications } from '../services/jobServices'
 
 const Profile = () => {
@@ -27,7 +27,7 @@ const Profile = () => {
     useEffect(() => {
         if (userId) {
             // Fetch User Details
-            axios.get(`http://localhost:8080/api/users/${userId}`)
+            api.get(`/users/${userId}`)
                 .then(res => setUser(res.data))
                 .catch(err => console.log(err))
             
