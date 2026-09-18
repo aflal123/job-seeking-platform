@@ -142,9 +142,9 @@ const Navbar = () => {
             </Link>
           )}
 
-          {role === 'ADMIN' && (
+          {role === 'ADMIN' ? (
             <Link 
-              to="/admin-dashboard" 
+              to="/admin" 
               style={{
                 padding: '8px 16px',
                 borderRadius: '8px',
@@ -159,7 +159,27 @@ const Navbar = () => {
                 gap: '6px'
               }}
             >
-              <Shield size={16} /> Admin Panel
+              <Shield size={16} /> Admin Portal
+            </Link>
+          ) : (
+            <Link 
+              to="/admin" 
+              style={{
+                padding: '8px 14px',
+                borderRadius: '8px',
+                color: '#94a3b8',
+                backgroundColor: 'transparent',
+                border: '1px solid transparent',
+                textDecoration: 'none',
+                fontWeight: 600,
+                fontSize: '0.85rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              title="Admin Portal"
+            >
+              <Shield size={15} /> Admin
             </Link>
           )}
         </div>

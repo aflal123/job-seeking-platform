@@ -25,6 +25,8 @@ function App() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/employer-dashboard" element={<EmployerDashboard />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin-portal" element={<AdminDashboard />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/community" element={<Community />} />

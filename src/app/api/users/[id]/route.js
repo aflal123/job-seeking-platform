@@ -37,7 +37,7 @@ export async function PUT(req, { params }) {
     const { id } = await params;
     const body = await req.json();
 
-    const { fullName, phone, bio, avatarUrl, resumeUrl } = body;
+    const { fullName, phone, bio, avatarUrl, resumeUrl, role, verified } = body;
 
     const updated = await prisma.user.update({
       where: { id: BigInt(id) },
@@ -47,6 +47,8 @@ export async function PUT(req, { params }) {
         ...(bio !== undefined && { bio }),
         ...(avatarUrl !== undefined && { avatarUrl }),
         ...(resumeUrl !== undefined && { resumeUrl }),
+        ...(role !== undefined && { role }),
+        ...(verified !== undefined && { verified }),
       },
     });
 
