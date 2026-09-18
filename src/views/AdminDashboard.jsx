@@ -99,7 +99,7 @@ const AdminDashboard = () => {
                 <Shield size={24} color="#f43f5e" />
               </div>
               <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>
-                System Admin <span className="gradient-text">Portal</span>
+                JobBook Admin <span className="gradient-text">Portal</span>
               </h1>
             </div>
             <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '6px' }}>

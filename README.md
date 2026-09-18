@@ -1,4 +1,4 @@
-# 💼 JobPulse — Multi-Role Career & Mentorship Ecosystem
+# 💼 JobBook — Multi-Role Career & Mentorship Ecosystem
 
 > **A modern, full-stack career platform uniting Job Seekers, Employers, Mentors, and Administrators.**  
 > Built with **Spring Boot 3 (ORM with Spring Data JPA)**, **Neon Serverless PostgreSQL**, **React 19 with 21st.dev / Shadcn UI aesthetics**, and **React Native (Expo)** mobile application.

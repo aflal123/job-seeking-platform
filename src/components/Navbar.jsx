@@ -51,10 +51,10 @@ const Navbar = () => {
           </div>
           <div>
             <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em' }}>
-              Job<span className="gradient-text">Pulse</span>
+              Job<span className="gradient-text">Book</span>
             </span>
             <span style={{ fontSize: '0.65rem', display: 'block', color: '#94a3b8', marginTop: '-4px', fontWeight: 600 }}>
-              AI CAREER & MENTORSHIP
+              CAREER & MENTORSHIP PLATFORM
             </span>
           </div>
         </Link>

@@ -43,8 +43,11 @@ const Register = () => {
   return (
    <Box sx={{ minHeight: '100vh', backgroundColor: '#f0f2f5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
   <Paper elevation={3} sx={{ padding: 4, width: 400 }}>
-    <Typography variant="h4" sx={{ color: '#1976d2', fontWeight: 'bold', marginBottom: 3 ,marginLeft:8}}>
-      Create Account
+    <Typography variant="h4" sx={{ color: '#1976d2', fontWeight: 'bold', marginBottom: 0.5, textAlign: 'center' }}>
+      JobBook
+    </Typography>
+    <Typography variant="body2" sx={{ color: '#64748b', marginBottom: 3, textAlign: 'center' }}>
+      Create your professional account
     </Typography>
         <TextField 
             label="Full Name" 

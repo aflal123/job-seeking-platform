@@ -92,7 +92,7 @@ const Login = () => {
               <Sparkles size={12} /> WELCOME BACK
             </span>
             <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#ffffff', marginTop: '6px' }}>
-              Sign in to <span className="gradient-text">JobPulse</span>
+              Sign in to <span className="gradient-text">JobBook</span>
             </h2>
             <p style={{ fontSize: '0.88rem', color: '#94a3b8', marginTop: '6px' }}>
               Access your job applications, courses, and employer dashboard.

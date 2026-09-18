@@ -38,14 +38,14 @@ public class OtpService {
     public void sendOtp(String email) {
         String otp = generateOtp(email);
         System.out.println("==================================================");
-        System.out.println("🔐 [JobPulse OTP Service] Generated OTP for " + email + ": " + otp);
+        System.out.println("🔐 [JobBook OTP Service] Generated OTP for " + email + ": " + otp);
         System.out.println("==================================================");
 
         if (mailSender != null) {
             try {
                 SimpleMailMessage message = new SimpleMailMessage();
                 message.setTo(email);
-                message.setSubject("JobPulse - Verification & Security OTP");
+                message.setSubject("JobBook - Verification & Security OTP");
                 message.setText("Your verification code is: " + otp + "\n\nThis code will expire in 10 minutes.\nIf you did not request this, please ignore this email.");
                 mailSender.send(message);
             } catch (Exception e) {
