@@ -16,13 +16,19 @@ export async function POST(req) {
     });
 
     if (!user) {
+      let formattedRole = 'JOB_SEEKER';
+      if (role === 'EMPLOYER') formattedRole = 'EMPLOYER';
+      else if (role === 'TRAINER') formattedRole = 'TRAINER';
+      else if (role === 'ADMIN') formattedRole = 'ADMIN';
+      else formattedRole = 'JOB_SEEKER';
+
       user = await prisma.user.create({
         data: {
           email,
           fullName: fullName || email.split('@')[0],
           googleId: googleId || '',
           avatarUrl: avatarUrl || '',
-          role: role || 'JOB_SEEKER',
+          role: formattedRole,
           verified: true,
         },
       });

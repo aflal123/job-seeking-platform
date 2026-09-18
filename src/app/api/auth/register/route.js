@@ -21,13 +21,19 @@ export async function POST(req) {
 
     const hashedPassword = await hashPassword(password);
 
+    let formattedRole = 'JOB_SEEKER';
+    if (role === 'EMPLOYER') formattedRole = 'EMPLOYER';
+    else if (role === 'TRAINER') formattedRole = 'TRAINER';
+    else if (role === 'ADMIN') formattedRole = 'ADMIN';
+    else formattedRole = 'JOB_SEEKER';
+
     const user = await prisma.user.create({
       data: {
         email,
         password: hashedPassword,
         fullName: fullName || email.split('@')[0],
         phone: phone || '',
-        role: role || 'JOB_SEEKER',
+        role: formattedRole,
         verified: true, // Activated by default for streamlined onboarding
       },
     });
