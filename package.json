@@ -1,0 +1,10 @@
+{
+  "name": "jobseeking-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd jobbook-frontend && npm run dev",
+    "build": "cd jobbook-frontend && npm run build",
+    "start": "cd jobbook-frontend && npm run start"
+  }
+}

@@ -1,0 +1,114 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  JOB_SEEKER
+  EMPLOYER
+  TRAINER
+  ADMIN
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  REMOTE
+  INTERNSHIP
+}
+
+enum JobStatus {
+  OPEN
+  CLOSED
+  DRAFT
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  SHORTLISTED
+  REJECTED
+  ACCEPTED
+}
+
+model User {
+  id           BigInt              @id @default(autoincrement())
+  email        String              @unique
+  password     String?
+  fullName     String?             @map("full_name")
+  phone        String?
+  role         String?
+  verified     Boolean             @default(false)
+  googleId     String?             @map("google_id")
+  avatarUrl    String?             @map("avatar_url")
+  resumeUrl    String?             @map("resume_url")
+  bio          String?             @db.Text
+  createdAt    DateTime            @default(now()) @map("created_at")
+  courses      Course[]            @relation("TrainerCourses")
+
+  @@map("users")
+}
+
+model Job {
+  id           BigInt              @id @default(autoincrement())
+  title        String
+  description  String?             @db.Text
+  companyName  String?             @map("company_name")
+  location     String?
+  salaryRange  String?             @map("salary_range")
+  jobType      String?             @map("job_type")
+  status       String?             @default("OPEN")
+  employerId   BigInt?             @map("employer_id")
+  requirements String?
+  createdAt    DateTime            @default(now()) @map("created_at")
+
+  @@map("jobs")
+}
+
+model JobApplication {
+  id             BigInt            @id @default(autoincrement())
+  jobId          BigInt?           @map("job_id")
+  applicantId    BigInt?           @map("applicant_id")
+  applicantName  String?           @map("applicant_name")
+  applicantEmail String?           @map("applicant_email")
+  coverLetter    String?           @map("cover_letter") @db.Text
+  resumeUrl      String?           @map("resume_url")
+  status         String?           @default("PENDING")
+  appliedAt      DateTime          @default(now()) @map("applied_at")
+
+  @@map("job_applications")
+}
+
+model Course {
+  id               BigInt              @id @default(autoincrement())
+  title            String
+  description      String?             @db.Text
+  trainerId        BigInt?             @map("trainer_id")
+  trainerName      String?             @map("trainer_name")
+  level            String?
+  category         String?
+  thumbnailUrl     String?             @map("thumbnail_url")
+  videoUrl         String?             @map("video_url")
+  rating           Float               @default(5.0)
+  enrollmentsCount Int                 @default(0) @map("enrollments_count")
+  createdAt        DateTime            @default(now()) @map("created_at")
+  trainer          User?               @relation("TrainerCourses", fields: [trainerId], references: [id])
+
+  @@map("courses")
+}
+
+model CourseEnrollment {
+  id                 BigInt            @id @default(autoincrement())
+  courseId           BigInt?           @map("course_id")
+  studentId          BigInt?           @map("student_id")
+  progressPercentage Int               @default(0) @map("progress_percentage")
+  completed          Boolean           @default(false)
+  enrolledAt         DateTime          @default(now()) @map("enrolled_at")
+
+  @@map("course_enrollments")
+}
