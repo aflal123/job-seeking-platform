@@ -14,7 +14,7 @@ import { getEmployerJobs, getJobApplications, updateApplicationStatus, postJob }
 import { useNavigate } from 'react-router-dom'
 
 const EmployerDashboard = () => {
-    const employerId = localStorage.getItem('userId')
+    const employerId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
     const navigate = useNavigate()
     const [tabValue, setTabValue] = useState(0)
     

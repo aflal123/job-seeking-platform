@@ -15,8 +15,8 @@ import api from '../services/api'
 import { getSeekerApplications } from '../services/jobServices'
 
 const Profile = () => {
-    const userId = localStorage.getItem('userId')
-    const role = localStorage.getItem('role')
+    const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
+    const role = typeof window !== 'undefined' ? localStorage.getItem('role') : null
     const isSeeker = role === 'JOB_SEEKER' || role === 'SEEKER'
     
     const [user, setUser] = useState({ fullName: '', email: '' })

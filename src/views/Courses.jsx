@@ -12,8 +12,8 @@ import { PlayCircle as PlayCircleIcon, CheckCircle as CheckCircleIcon } from '@m
 import { getAllCourses, getMyEnrollments, enrollCourse, createCourse, getCoursesByTrainer } from '../services/courseServices'
 
 const Courses = () => {
-    const userId = localStorage.getItem('userId')
-    const role = localStorage.getItem('role')
+    const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
+    const role = typeof window !== 'undefined' ? localStorage.getItem('role') : null
     const isSeeker = role === 'JOB_SEEKER' || role === 'SEEKER'
     const [tabValue, setTabValue] = useState(0)
 

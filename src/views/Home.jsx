@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography'
 import { PhotoSizeSelectActual as PhotoIcon, VideoLibrary as VideoIcon, Event as EventIcon, Article as ArticleIcon } from '@mui/icons-material'
 
 const Home = () => {
-    const fullName = localStorage.getItem('fullName')
+    const fullName = typeof window !== 'undefined' ? localStorage.getItem('fullName') : null
     const [postContent, setPostContent] = useState('')
 
     return (

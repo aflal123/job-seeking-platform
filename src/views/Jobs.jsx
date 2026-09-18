@@ -16,7 +16,8 @@ const Jobs = () => {
     const [jobs, setJobs] = useState([])
     const [location, setLocation] = useState('')
     const [jobType, setJobType] = useState('')
-    const userId = localStorage.getItem('userId')
+    const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null
+    const role = typeof window !== 'undefined' ? localStorage.getItem('role') : null
     const isSeeker = role === 'JOB_SEEKER' || role === 'SEEKER'
 
     const handleApply = async (jobId) => {

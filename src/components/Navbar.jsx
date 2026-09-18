@@ -6,9 +6,9 @@ const Navbar = () => {
   const navigate = useNavigate()
   const location = useLocation()
   
-  const token = localStorage.getItem('token')
-  const role = localStorage.getItem('role') || 'JOB_SEEKER'
-  const fullName = localStorage.getItem('fullName') || 'User'
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+  const role = typeof window !== 'undefined' ? (localStorage.getItem('role') || 'JOB_SEEKER') : 'JOB_SEEKER'
+  const fullName = typeof window !== 'undefined' ? (localStorage.getItem('fullName') || 'User') : 'User'
 
   const handleLogout = () => {
     localStorage.clear()

@@ -10,8 +10,8 @@ import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const Sidebar = () => {
-    const fullName = localStorage.getItem('fullName')
-    const role = localStorage.getItem('role')
+    const fullName = typeof window !== 'undefined' ? localStorage.getItem('fullName') : null
+    const role = typeof window !== 'undefined' ? localStorage.getItem('role') : null
     const navigate = useNavigate()
     const location = useLocation()
 
