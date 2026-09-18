@@ -1,13 +1,41 @@
 {
-  "name": "jobseeking-platform",
-  "version": "1.0.0",
+  "name": "jobbook-frontend",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "cd jobbook-frontend && npm run dev",
-    "build": "cd jobbook-frontend && npm install && npx --yes prisma generate && npx --yes next build && cp -r .next ../.next 2>/dev/null || true",
-    "start": "cd jobbook-frontend && npm run start"
+    "dev": "next dev",
+    "build": "npx --yes prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "postinstall": "npx --yes prisma generate"
   },
   "dependencies": {
-    "next": "^16.4.0-canary.35"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.0",
+    "@mui/material": "^9.0.0",
+    "@neondatabase/serverless": "^1.1.0",
+    "@prisma/client": "6.4.1",
+    "axios": "^1.15.1",
+    "bcryptjs": "^3.0.3",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^1.45.0",
+    "next": "^16.4.0-canary.35",
+    "prisma": "6.4.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.14.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "vite": "^8.0.4"
   }
 }
