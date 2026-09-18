@@ -14,6 +14,7 @@ import { getAllCourses, getMyEnrollments, enrollCourse, createCourse, getCourses
 const Courses = () => {
     const userId = localStorage.getItem('userId')
     const role = localStorage.getItem('role')
+    const isSeeker = role === 'JOB_SEEKER' || role === 'SEEKER'
     const [tabValue, setTabValue] = useState(0)
 
     const [allCourses, setAllCourses] = useState([])
@@ -58,8 +59,8 @@ const Courses = () => {
             alert("Please login to enroll.")
             return
         }
-        if (role !== 'SEEKER') {
-            alert("Only seekers can enroll in courses.")
+        if (!isSeeker) {
+            alert("Only job seekers can enroll in courses.")
             return
         }
         try {
@@ -101,7 +102,7 @@ const Courses = () => {
                     
                     <Tabs value={tabValue} onChange={handleTabChange} sx={{ borderBottom: 1, borderColor: 'divider', paddingX: 2 }}>
                         <Tab label="Explore Courses" sx={{ fontWeight: 'bold' }} />
-                        {role === 'SEEKER' && <Tab label="My Learning" sx={{ fontWeight: 'bold' }} />}
+                        {isSeeker && <Tab label="My Learning" sx={{ fontWeight: 'bold' }} />}
                         {role === 'TRAINER' && <Tab label="Upload Course" sx={{ fontWeight: 'bold' }} />}
                         {role === 'TRAINER' && <Tab label="My Uploads" sx={{ fontWeight: 'bold' }} />}
                     </Tabs>
@@ -118,7 +119,7 @@ const Courses = () => {
                                             <Typography variant="h6" fontWeight="bold">{course.title}</Typography>
                                             <Typography variant="body2" color="textSecondary" sx={{ mb: 2, flexGrow: 1 }}>{course.description}</Typography>
                                             <Typography variant="caption" sx={{ display: 'block', mb: 2 }}>Trainer ID: {course.trainer?.id}</Typography>
-                                            <Button variant="contained" color="success" onClick={() => handleEnroll(course.id)} disabled={role !== 'SEEKER'}>
+                                            <Button variant="contained" color="success" onClick={() => handleEnroll(course.id)} disabled={!isSeeker}>
                                                 Enroll Now
                                             </Button>
                                         </Paper>
@@ -128,7 +129,7 @@ const Courses = () => {
                         )}
 
                         {/* TAB 1: My Learning (Seeker) */}
-                        {tabValue === 1 && role === 'SEEKER' && (
+                        {tabValue === 1 && isSeeker && (
                             <Grid container spacing={3}>
                                 {myEnrollments.length === 0 && <Typography sx={{ width: '100%', mt: 2, textAlign: 'center' }}>You haven't enrolled in any courses yet.</Typography>}
                                 {myEnrollments.map(enrollment => (

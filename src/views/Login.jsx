@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Mail, Lock, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react'
+import { Mail, Lock, ArrowRight, ShieldCheck } from 'lucide-react'
 import api from '../services/api'
 import Navbar from '../components/Navbar'
 import ForgotResetPasswordModal from '../components/ForgotResetPasswordModal'
@@ -89,7 +89,7 @@ const Login = () => {
           
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <span className="badge-pill badge-purple" style={{ marginBottom: '12px' }}>
-              <Sparkles size={12} /> WELCOME BACK
+              WELCOME BACK
             </span>
             <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#ffffff', marginTop: '6px' }}>
               Sign in to <span className="gradient-text">JobBook</span>

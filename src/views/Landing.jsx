@@ -90,7 +90,7 @@ const Landing = () => {
                         <Paper elevation={0} sx={{ p: 4, textAlign: 'center', borderRadius: 4, border: '1px solid #f0f0f0', transition: '0.3s', '&:hover': { transform: 'translateY(-10px)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' } }}>
                             <WorkIcon sx={{ fontSize: 60, color: '#1976d2', mb: 2 }} />
                             <Typography variant="h5" fontWeight="bold" gutterBottom>Smart Job Search</Typography>
-                            <Typography color="textSecondary">AI-driven job matching that connects you with the perfect opportunities based on your skills.</Typography>
+                            <Typography color="textSecondary">Direct job matching that connects you with the right opportunities based on your verified skills.</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={4}>

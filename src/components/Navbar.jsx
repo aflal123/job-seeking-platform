@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Briefcase, BookOpen, Users, Bell, User as UserIcon, LogOut, Shield, Sparkles, PlusCircle } from 'lucide-react'
+import { Briefcase, BookOpen, Users, Bell, User as UserIcon, LogOut, Shield, PlusCircle } from 'lucide-react'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -229,7 +229,7 @@ const Navbar = () => {
             <>
               <Link to="/login" className="btn-secondary">Log In</Link>
               <Link to="/register" className="btn-primary">
-                Get Started <Sparkles size={16} />
+                Get Started
               </Link>
             </>
           )}

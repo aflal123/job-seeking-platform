@@ -17,11 +17,11 @@ const Jobs = () => {
     const [location, setLocation] = useState('')
     const [jobType, setJobType] = useState('')
     const userId = localStorage.getItem('userId')
-    const role = localStorage.getItem('role')
+    const isSeeker = role === 'JOB_SEEKER' || role === 'SEEKER'
 
     const handleApply = async (jobId) => {
-        if (role !== 'SEEKER') {
-            alert("Only seekers can apply for jobs!")
+        if (!isSeeker) {
+            alert("Only job seekers can apply for jobs!")
             return
         }
         try {
@@ -150,7 +150,7 @@ const Jobs = () => {
                                         fullWidth 
                                         sx={{ borderRadius: 2, py: 1, fontWeight: 'bold' }} 
                                         onClick={() => handleApply(job.id)}
-                                        disabled={role !== 'SEEKER'}
+                                        disabled={!isSeeker}
                                     >
                                         Apply Now
                                     </Button>

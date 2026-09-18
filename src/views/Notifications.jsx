@@ -11,14 +11,14 @@ import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
-import { MoreHoriz as MoreIcon, Work as WorkIcon, People as PeopleIcon, Stars as StarsIcon } from '@mui/icons-material'
+import { MoreHoriz as MoreIcon, Work as WorkIcon, People as PeopleIcon, Notifications as NotificationsIcon } from '@mui/icons-material'
 import Sidebar from '../components/Sidebar'
 
 const Notifications = () => {
     const notifications = [
         { id: 1, type: 'JOB', text: 'New Job Match: Senior React Developer at Google matches your profile.', time: '2h', icon: <WorkIcon sx={{ color: '#1976d2' }} />, unread: true },
         { id: 2, type: 'NETWORK', text: 'Sarah Chen accepted your connection request.', time: '5h', icon: <PeopleIcon sx={{ color: '#2e7d32' }} />, unread: true },
-        { id: 3, type: 'SYSTEM', text: 'Welcome to JobBook! Complete your profile to get 2x more visibility.', time: '1d', icon: <StarsIcon sx={{ color: '#fbc02d' }} />, unread: false },
+        { id: 3, type: 'SYSTEM', text: 'Welcome to JobBook! Complete your profile to get 2x more visibility.', time: '1d', icon: <NotificationsIcon sx={{ color: '#1976d2' }} />, unread: false },
         { id: 4, type: 'JOB', text: 'Amazon is hiring Software Engineers in your area.', time: '2d', icon: <WorkIcon sx={{ color: '#1976d2' }} />, unread: false },
     ]
 
