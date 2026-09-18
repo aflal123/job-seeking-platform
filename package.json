@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cd jobbook-frontend && npm run dev",
-    "build": "cd jobbook-frontend && npm run build",
+    "build": "cd jobbook-frontend && npm install && npx --yes prisma generate && npx --yes next build",
     "start": "cd jobbook-frontend && npm run start"
   }
 }
